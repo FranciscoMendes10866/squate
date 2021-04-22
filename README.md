@@ -1,0 +1,2 @@
+# squate
+Personal Trainer APP 🏋️‍♀️
