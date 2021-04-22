@@ -1,2 +1,2 @@
 # squate
-Personal Trainer APP 🏋️‍♀️
+Juliana Morais Web App 🏋️‍♀️
