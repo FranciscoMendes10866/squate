@@ -1,8 +1,8 @@
-## Getting Started
+### How to run it
 
 ```bash
 # Build image
 docker build -t vesta:latest .
 # Run container
-docker run -d -p 3000:3000 vesta
+docker run -d -p 3333:3000 vesta
 ```
