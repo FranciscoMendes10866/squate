@@ -1,5 +1,8 @@
 import Head from 'next/head'
 
+import { Hero, Level, Tiles, Engage, Quote, Alternatives, Pricing } from '../layouts'
+import { Footer } from '../components'
+
 export default function Home() {
   return (
     <div>
@@ -8,8 +11,15 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="container">
-        <h1 className="is-size-1 has-text-weight-bold has-text-info has-text-centered">Hello from Vesta!</h1>
+      <main>
+        <Hero />
+        <Level />
+        <Tiles />
+        <Engage />
+        <Quote />
+        <Alternatives />
+        <Pricing />
+        <Footer />
       </main>
     </div>
   )
