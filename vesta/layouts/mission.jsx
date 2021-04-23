@@ -1,25 +1,23 @@
-const Alternatives = () => {
+const Mission = () => {
   return (
     <section className="py-6 mt-6 mb-6">
       <div className="container">
         <div className="columns is-variable is-8 is-justify-content-space-around is-align-items-center">
           <div className="column is-6">
             <h5 className="is-size-3 mb-3 has-text-left has-text-weight-semibold has-text-grey-dark">
-              Easily connects with the tools you already use.
+              A minha missão
             </h5>
             <p className="is-size-6 mt-5 has-text-grey">
-              Integrate your community directly with your website, with your
-              blog, with another social network or simply into a giveaway pool.
+              Estou comprometida em fornecer treinos pessoais eficazes e
+              ajudá-lo a alcançar resultados desejados.
             </p>
             <p className="is-size-6 mt-5 has-text-grey">
-              However, you can also use SlimLink if you want to minimize the
-              size of a link from a partnership you have made or an advertising
-              campaign that you are part of.
+              Ao contrário dos planos de treino tradicionais e planos de perda
+              de peso que parecem ser bons demais para ser verdade, não acredito
+              em soluções fáceis de curto prazo.
             </p>
             <p className="is-size-6 mt-5 has-text-grey">
-              You can rest assured that you can use this same platform, whether
-              for non-monetary projects or as another tool in your marketing or
-              advertising arsenal.
+              Em vez disso, vamos definir juntos metas realistas e alcançáveis.
             </p>
           </div>
           <div className="column is-4">
@@ -34,4 +32,4 @@ const Alternatives = () => {
   );
 };
 
-export default Alternatives;
+export default Mission;

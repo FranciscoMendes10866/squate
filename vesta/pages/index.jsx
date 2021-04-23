@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-import { Hero, Level, Tiles, Engage, Quote, Alternatives, Pricing } from '../layouts'
+import { Hero, Level, Tiles, Engage, Quote, Mission, Pricing } from '../layouts'
 import { Footer } from '../components'
 
 export default function Home() {
@@ -17,7 +17,7 @@ export default function Home() {
         <Tiles />
         <Engage />
         <Quote />
-        <Alternatives />
+        <Mission />
         <Pricing />
         <Footer />
       </main>

@@ -5,13 +5,14 @@ const Tiles = () => {
         {/* <!-- Header --> */}
         <div className="columns is-centered py-6">
           <div className="column is-12-mobile is-12-tablet is-8-desktop has-text-centered">
-          <h1 className="is-size-3 has-text-left-mobile has-text-weight-semibold has-text-dark">
-            É hora de se colocar em primeiro lugar
-          </h1>
-          <p className="is-size-5 mt-5 has-text-left-mobile has-text-grey">
-            Trabalho com homens e mulheres que deixaram o condicionamento físico
-            cair na sua lista de prioridades e querem fazer uma mudança.
-          </p>
+            <h1 className="is-size-3 has-text-left-mobile has-text-weight-semibold has-text-dark">
+              Está na hora de se colocar em primeiro lugar
+            </h1>
+            <p className="is-size-5 mt-5 has-text-left-mobile has-text-grey">
+              Trabalho com homens e mulheres que deixaram o condicionamento
+              físico cair na sua lista de prioridades e querem fazer uma
+              mudança.
+            </p>
           </div>
         </div>
         {/* <!-- Tiles --> */}
@@ -21,7 +22,7 @@ const Tiles = () => {
               <h4 className="is-size-5 mb-3 has-text-centered has-text-weight-semibold has-text-grey-dark">
                 🤩&nbsp;Não apenas bem estar físico
               </h4>
-              <small className="has-text-grey mb-3">
+              <small className="has-text-grey mb-4">
                 O desporto é um bom ponto de partida para a promoção da educação
                 baseada em competências para a vida e estilos de vida saudáveis.
               </small>
@@ -81,11 +82,11 @@ const Tiles = () => {
                 👍&nbsp;Controle a glicemia
               </h4>
               <small className="has-text-grey">
-                As atividades físicas regulares ajuda a reduzir o excesso de
-                gordura ao redor da cintura que está relacionado com o aumento
-                da resistência à insulina, fazendo com que o corpo não utilize o
-                açúcar de maneira correta, o que leva ao aumento da glicemia,
-                aumentando o risco de desenvolver diabetes.
+                Reduza o excesso de gordura ao redor da cintura que está
+                relacionado com o aumento da resistência à insulina, fazendo com
+                que o corpo não utilize o açúcar de maneira correta, o que leva
+                ao aumento da glicemia, aumentando o risco de desenvolver
+                diabetes.
               </small>
             </div>
             <div className="tile is-child box remove-shadow has-background-white-bis">
