@@ -33,7 +33,7 @@
 }
 
 .bunny::before {
-  content: '\1F430';
+  content: '\1F4AA';
   margin-right: 10px;
 }
 
@@ -46,6 +46,6 @@
 }
 
 .ok-hand::before {
-  content: '\1F44c';
+  content: '\1F3CB';
   margin-right: 10px;
 }

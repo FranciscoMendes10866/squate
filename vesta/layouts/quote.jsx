@@ -5,10 +5,10 @@ const Quote = () => {
         <div className="columns is-centered">
           <div className="column is-8">
             <p className="is-size-3 has-text-left-mobile has-text-grey">
-              "Truth is ever to be found in simplicity, and not in the
-              multiplicity and confusion of things."
+              "Algumas pessoas querem que aconteça, algumas desejam que
+              aconteça, outras fazem acontecer."
             </p>
-            <p className="is-size-5 has-text-grey mt-5">- Isaac Newton</p>
+            <p className="is-size-5 has-text-grey mt-5">- Michael Jordan</p>
           </div>
         </div>
       </div>

@@ -3,48 +3,51 @@ const Tiles = () => {
     <section className="py-6 mt-6">
       <div className="container">
         {/* <!-- Header --> */}
-        <div className="has-text-centered">
+        <div className="columns is-centered py-6">
+          <div className="column is-12-mobile is-12-tablet is-8-desktop has-text-centered">
           <h1 className="is-size-3 has-text-left-mobile has-text-weight-semibold has-text-dark">
-            Complete link management
+            É hora de se colocar em primeiro lugar
           </h1>
           <p className="is-size-5 mt-5 has-text-left-mobile has-text-grey">
-            Everything you need to create and manage powerful links at scale.
+            Trabalho com homens e mulheres que deixaram o condicionamento físico
+            cair na sua lista de prioridades e querem fazer uma mudança.
           </p>
+          </div>
         </div>
         {/* <!-- Tiles --> */}
         <div className="tile is-ancestor mt-6">
           <div className="tile is-4 is-parent">
             <div className="tile is-child box remove-shadow has-background-white-bis">
               <h4 className="is-size-5 mb-3 has-text-centered has-text-weight-semibold has-text-grey-dark">
-                👋&nbsp;Easily redirect any link
+                🤩&nbsp;Não apenas bem estar físico
               </h4>
               <small className="has-text-grey mb-3">
-                Change the destination URL for any short link, including QR
-                Codes. Bitly makes it easy to assign a new URL to any of your
-                links, whether you want to correct a destination error, update a
-                destination or manually expire old links.
+                O desporto é um bom ponto de partida para a promoção da educação
+                baseada em competências para a vida e estilos de vida saudáveis.
               </small>
               <br />
               <br />
-              <small className="has-text-grey">Including examples ...</small>
+              <small className="has-text-grey">
+                Tendo como benefícios psicológicos:
+              </small>
               <ul className="mt-5 has-text-grey">
                 <li className="bunny">
-                  <small>Youtube Descriptions</small>
+                  <small>Promove a sensação de bem-estar</small>
                 </li>
                 <li className="bunny">
-                  <small>Instagram Bio</small>
+                  <small>Diminui o estresse</small>
                 </li>
                 <li className="bunny">
-                  <small>Link on Facebook post</small>
+                  <small>Combate a ansiedade e a depressão</small>
                 </li>
                 <li className="bunny">
-                  <small>Affiliate link</small>
+                  <small>Aumenta a disposição</small>
                 </li>
                 <li className="bunny">
-                  <small>Place in newsletters</small>
+                  <small>Fortalece o sistema imunológico</small>
                 </li>
                 <li className="bunny">
-                  <small>And much more</small>
+                  <small>Entre muitos outros benefícios...</small>
                 </li>
               </ul>
             </div>
@@ -52,47 +55,48 @@ const Tiles = () => {
           <div className="tile is-4 is-vertical is-parent">
             <div className="tile is-child box remove-shadow has-background-white-bis">
               <h4 className="is-size-5 mb-3 has-text-centered has-text-weight-semibold has-text-grey-dark">
-                🔑&nbsp;Create secure & reliable links
+                😁&nbsp;Combata o excesso de peso
               </h4>
               <small className="has-text-grey">
-                Rest assured knowing your links are secure. Every link is
-                encrypted with HTTPS to guard against eavesdropping or
-                third-party tampering—because you have more important things to
-                worry about.
+                As atividades físicas são a melhor forma de combater o excesso
+                de peso ou obesidade, além de ajudar a manter a perda de peso.
+                Isto porque os exercícios aceleram o metabolismo do corpo.
               </small>
             </div>
             <div className="tile is-child box remove-shadow has-background-white-bis">
               <h4 className="is-size-5 mb-3 has-text-centered has-text-weight-semibold has-text-grey-dark">
-                🐧&nbsp;Seamless integrations
+                😊&nbsp;Reduza a pressão arterial
               </h4>
               <small className="has-text-grey">
-                Integrate Bitly with your preferred social media management
-                tools to easily share branded links in all of your social
-                content.
+                As atividades físicas melhoram os níveis de colesterol bom e
+                reduzem o colesterol ruim e os triglicerídeos, diminuindo o
+                risco de doenças cardiovasculares como aterosclerose, infarto ou
+                derrame cerebral.
               </small>
             </div>
           </div>
           <div className="tile is-4 is-vertical is-parent">
             <div className="tile is-child box remove-shadow has-background-white-bis">
               <h4 className="is-size-5 mb-3 has-text-centered has-text-weight-semibold has-text-grey-dark">
-                🌱&nbsp;Turn your links into brand assets
+                👍&nbsp;Controle a glicemia
               </h4>
               <small className="has-text-grey">
-                With trust comes action. Businesses that share custom links see
-                up to a 34% boost in click-throughs. It’s simple: If your
-                audience trusts your links and knows where they lead, they’re
-                more likely to click on them.
+                As atividades físicas regulares ajuda a reduzir o excesso de
+                gordura ao redor da cintura que está relacionado com o aumento
+                da resistência à insulina, fazendo com que o corpo não utilize o
+                açúcar de maneira correta, o que leva ao aumento da glicemia,
+                aumentando o risco de desenvolver diabetes.
               </small>
             </div>
             <div className="tile is-child box remove-shadow has-background-white-bis">
               <h4 className="is-size-5 mb-3 has-text-centered has-text-weight-semibold has-text-grey-dark">
-                🍬&nbsp;Create recognizable links
+                🥸&nbsp;Fortaleça os ossos e articulações
               </h4>
               <small className="has-text-grey">
-                Take custom links a step further with custom back-halves. When
-                you edit the back-half of a link you give people a preview of
-                where you’re sending them, building trust and boosting
-                click-throughs.
+                Promova o crescimento ósseo e aumente a resistência e a
+                densidade dos ossos. Prevenindo a osteoporose e a reduzir o
+                risco de lesões, quedas e fraturas relacionadas com o
+                enfraquecimento dos ossos.
               </small>
             </div>
           </div>

@@ -19,13 +19,13 @@ const Navbar = () => {
         </a>
       </div>
 
-      <div class="navbar-end">
-        <div class="navbar-item">
-          <div class="buttons">
-            <a class="button is-link">
+      <div className="navbar-end">
+        <div className="navbar-item">
+          <div className="buttons">
+            <a className="button is-link">
               <strong>Criar conta</strong>
             </a>
-            <a class="button is-link is-light">Iniciar sessão</a>
+            <a className="button is-link is-light">Iniciar sessão</a>
           </div>
         </div>
       </div>
