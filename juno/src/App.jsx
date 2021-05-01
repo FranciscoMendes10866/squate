@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import { LoginPage, ClientsPage } from "./pages";
+import { LoginPage, ClientsPage, ClientDetails } from "./pages";
 import DashboardLayout from './layouts/dashboard'
 
 function App() {
@@ -9,7 +9,8 @@ function App() {
       <Switch>
         <Route exact path="/" component={LoginPage} />
         <DashboardLayout>
-          <Route exact path="/dashboard" component={ClientsPage} />
+          <Route exact path="/dashboard/clients" component={ClientsPage} />
+          <Route exact path="/dashboard/clients/details" component={ClientDetails} />
         </DashboardLayout>
       </Switch>
     </Router>

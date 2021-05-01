@@ -1,4 +1,5 @@
-import React from "react";
+import { useHistory } from "react-router-dom";
+import { useState } from 'react'
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -14,8 +15,10 @@ import Container from "@material-ui/core/Container";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
-
-import ListItems from "../components/layout/listItems";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import PersonIcon from "@material-ui/icons/Person";
 
 const drawerWidth = 240;
 
@@ -100,7 +103,8 @@ const useStyles = makeStyles((theme) => ({
 
 const DashboardLayout = ({ children }) => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  const history = useHistory()
+  const [open, setOpen] = useState(true);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -156,7 +160,14 @@ const DashboardLayout = ({ children }) => {
           </IconButton>
         </div>
         <Divider />
-        <List>{ListItems}</List>
+        <List>
+          <ListItem button onClick={() => history.push('/dashboard/clients')}>
+            <ListItemIcon>
+              <PersonIcon />
+            </ListItemIcon>
+            <ListItemText primary="Lista de Clientes" />
+          </ListItem>
+        </List>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
