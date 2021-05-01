@@ -1,6 +1,14 @@
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+import { LoginPage } from "./pages";
+
 function App() {
   return (
-    <h2>Hello world from Juno! 🪐</h2>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={LoginPage} />
+      </Switch>
+    </Router>
   );
 }
 
