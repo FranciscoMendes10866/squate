@@ -9,12 +9,12 @@ import queryString from "query-string";
 
 const useStyles = makeStyles((theme) => ({
   breadcrumb: {
-    marginBottom: 24
+    marginBottom: 24,
   },
   crumText: {
-    textDecoration: 'inherit',
-    color: 'inherit',
-    cursor: 'pointer'
+    textDecoration: "inherit",
+    color: "inherit",
+    cursor: "pointer",
   },
   paper: {
     padding: theme.spacing(2),
@@ -34,10 +34,14 @@ const ClientDetails = ({ location }) => {
   return (
     <>
       <Breadcrumbs aria-label="breadcrumb" className={classes.breadcrumb}>
-        <Link color="inherit" to="/dashboard/clients" className={classes.crumText}>
+        <Link
+          color="inherit"
+          to="/dashboard/clients"
+          className={classes.crumText}
+        >
           Lista de Clientes
         </Link>
-        <Typography color="textSecundary">Cliente em Detalhe</Typography>
+        <Typography color="textSecondary">Cliente em Detalhe</Typography>
       </Breadcrumbs>
       <Grid container spacing={3}>
         {/* Chart */}

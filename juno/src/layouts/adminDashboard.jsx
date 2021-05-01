@@ -1,8 +1,7 @@
 import { useHistory } from "react-router-dom";
-import { useState } from 'react'
+import { useState } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -10,15 +9,17 @@ import List from "@material-ui/core/List";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
-import Badge from "@material-ui/core/Badge";
+import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import NotificationsIcon from "@material-ui/icons/Notifications";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import PersonIcon from "@material-ui/icons/Person";
+import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
+import AddIcon from "@material-ui/icons/Add";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import ListSubheader from "@material-ui/core/ListSubheader";
 
 const drawerWidth = 240;
 
@@ -99,11 +100,17 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
+  buttonML: {
+    marginLeft: 12,
+  },
+  buttonMR: {
+    marginRight: 12,
+  },
 }));
 
-const DashboardLayout = ({ children }) => {
+const AdminDashboardLayout = ({ children, location }) => {
   const classes = useStyles();
-  const history = useHistory()
+  const history = useHistory();
   const [open, setOpen] = useState(true);
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -113,7 +120,7 @@ const DashboardLayout = ({ children }) => {
   };
   return (
     <div className={classes.root}>
-      <CssBaseline />
+      {/* Navbar */}
       <AppBar
         position="absolute"
         className={clsx(classes.appBar, open && classes.appBarShift)}
@@ -131,6 +138,7 @@ const DashboardLayout = ({ children }) => {
           >
             <MenuIcon />
           </IconButton>
+          {/* Navbar Items */}
           <Typography
             component="h1"
             variant="h6"
@@ -140,13 +148,20 @@ const DashboardLayout = ({ children }) => {
           >
             Dashboard
           </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
+          {/* Add Client Button */}
+          {location.pathname === "/dashboard/clients" ? (
+            <Button
+              variant="contained"
+              color="secondary"
+              className={classes.buttonMR}
+              startIcon={<AddIcon />}
+            >
+              Adicionar cliente
+            </Button>
+          ) : null}
         </Toolbar>
       </AppBar>
+      {/* Drawer */}
       <Drawer
         variant="permanent"
         classes={{
@@ -160,12 +175,23 @@ const DashboardLayout = ({ children }) => {
           </IconButton>
         </div>
         <Divider />
+        {/* Drawer Items */}
         <List>
-          <ListItem button onClick={() => history.push('/dashboard/clients')}>
+          <ListItem button onClick={() => history.push("/dashboard/clients")}>
             <ListItemIcon>
-              <PersonIcon />
+              <PeopleAltIcon />
             </ListItemIcon>
             <ListItemText primary="Lista de Clientes" />
+          </ListItem>
+        </List>
+        <Divider />
+        <List>
+          <ListSubheader inset>Conta</ListSubheader>
+          <ListItem button>
+            <ListItemIcon>
+              <ExitToAppIcon />
+            </ListItemIcon>
+            <ListItemText primary="Terminar sessão" />
           </ListItem>
         </List>
       </Drawer>
@@ -179,4 +205,4 @@ const DashboardLayout = ({ children }) => {
   );
 };
 
-export default DashboardLayout;
+export default AdminDashboardLayout;
