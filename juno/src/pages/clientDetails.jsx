@@ -11,6 +11,11 @@ const useStyles = makeStyles((theme) => ({
   breadcrumb: {
     marginBottom: 24
   },
+  crumText: {
+    textDecoration: 'inherit',
+    color: 'inherit',
+    cursor: 'pointer'
+  },
   paper: {
     padding: theme.spacing(2),
     display: "flex",
@@ -29,10 +34,10 @@ const ClientDetails = ({ location }) => {
   return (
     <>
       <Breadcrumbs aria-label="breadcrumb" className={classes.breadcrumb}>
-        <Link color="inherit" to="/dashboard/clients">
+        <Link color="inherit" to="/dashboard/clients" className={classes.crumText}>
           Lista de Clientes
         </Link>
-        <Typography color="textPrimary">Cliente em Detalhe</Typography>
+        <Typography color="textSecundary">Cliente em Detalhe</Typography>
       </Breadcrumbs>
       <Grid container spacing={3}>
         {/* Chart */}

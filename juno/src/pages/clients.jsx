@@ -23,6 +23,11 @@ const useStyles = makeStyles((theme) => ({
   demo: {
     backgroundColor: theme.palette.background.paper,
   },
+  crumText: {
+    textDecoration: 'inherit',
+    color: 'inherit',
+    cursor: 'pointer'
+  }
 }));
 
 function generate(element) {
@@ -42,7 +47,7 @@ const ClientsPage = () => {
   return (
     <>
       <Breadcrumbs aria-label="breadcrumb" className={classes.breadcrumb}>
-        <Link color="inherit" to="/dashboard/clients">
+        <Link color="inherit" to="/dashboard/clients" className={classes.crumText}>
           Lista de Clientes
         </Link>
       </Breadcrumbs>
