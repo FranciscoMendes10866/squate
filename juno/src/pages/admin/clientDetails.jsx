@@ -1,11 +1,17 @@
 import clsx from "clsx";
 import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import queryString from "query-string";
+import Paper from "@material-ui/core/Paper";
+
+import {
+  LocationDetails,
+  ContactDetails,
+  PersonalDetails,
+} from "../../components";
 
 const useStyles = makeStyles((theme) => ({
   breadcrumb: {
@@ -29,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ClientDetails = ({ location }) => {
   const { id } = queryString.parse(location.search);
+  console.log(id);
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   return (
@@ -44,20 +51,9 @@ const ClientDetails = ({ location }) => {
         <Typography color="textSecondary">Cliente em Detalhe</Typography>
       </Breadcrumbs>
       <Grid container spacing={3}>
-        {/* Chart */}
-        <Grid item xs={12} md={8} lg={9}>
-          <Paper className={fixedHeightPaper}>
-            <h1>ID</h1>
-            <p>{id}</p>
-          </Paper>
-        </Grid>
-        {/* Recent Deposits */}
-        <Grid item xs={12} md={4} lg={3}>
-          <Paper className={fixedHeightPaper}>
-            <h1>Hello</h1>
-          </Paper>
-        </Grid>
-        {/* Recent Orders */}
+        <PersonalDetails fixedHeightPaper={fixedHeightPaper} />
+        <LocationDetails fixedHeightPaper={fixedHeightPaper} />
+        <ContactDetails fixedHeightPaper={fixedHeightPaper} />
         <Grid item xs={12}>
           <Paper className={classes.paper}>
             <h1>Hello</h1>
