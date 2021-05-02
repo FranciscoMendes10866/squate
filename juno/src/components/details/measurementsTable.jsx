@@ -18,6 +18,7 @@ const rows = [
 const useStyles = makeStyles({
   margin: {
     marginTop: 30,
+    marginBottom: 30
   },
 });
 

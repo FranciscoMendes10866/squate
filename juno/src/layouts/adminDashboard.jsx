@@ -20,6 +20,8 @@ import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
 import AddIcon from "@material-ui/icons/Add";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import ListSubheader from "@material-ui/core/ListSubheader";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 
 const drawerWidth = 240;
 
@@ -118,6 +120,14 @@ const AdminDashboardLayout = ({ children, location }) => {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  const [anchorEl, setAnchorEl] = useState(null);
+  const dropdown = Boolean(anchorEl);
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   return (
     <div className={classes.root}>
       {/* Navbar */}
@@ -158,6 +168,39 @@ const AdminDashboardLayout = ({ children, location }) => {
             >
               Adicionar cliente
             </Button>
+          ) : null}
+          {location.pathname === "/dashboard/clients/details" ? (
+            <>
+              <Button
+              variant="contained"
+              color="secondary"
+              className={classes.buttonMR}
+              onClick={handleMenu}
+              startIcon={<AddIcon />}
+            >
+              Inserir
+            </Button>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: "center",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={dropdown}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleClose}>Dados Pessoais</MenuItem>
+                <MenuItem onClick={handleClose}>Medições</MenuItem>
+                <MenuItem onClick={handleClose}>Avaliação Tanita</MenuItem>
+                <MenuItem onClick={handleClose}>Info. Saúde</MenuItem>
+              </Menu>
+            </>
           ) : null}
         </Toolbar>
       </AppBar>
