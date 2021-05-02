@@ -11,6 +11,8 @@ import {
   LocationDetails,
   ContactDetails,
   PersonalDetails,
+  MeasurementsTable,
+  TanitaTable
 } from "../../components";
 
 const useStyles = makeStyles((theme) => ({
@@ -56,7 +58,12 @@ const ClientDetails = ({ location }) => {
         <ContactDetails fixedHeightPaper={fixedHeightPaper} />
         <Grid item xs={12}>
           <Paper className={classes.paper}>
-            <h1>Hello</h1>
+            <MeasurementsTable />
+          </Paper>
+        </Grid>
+        <Grid item xs={12}>
+          <Paper className={classes.paper}>
+            <TanitaTable />
           </Paper>
         </Grid>
       </Grid>
