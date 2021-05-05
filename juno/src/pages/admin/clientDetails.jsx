@@ -2,10 +2,10 @@ import clsx from "clsx";
 import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import queryString from "query-string";
 import Paper from "@material-ui/core/Paper";
+import { useEffect } from "react";
 
 import {
   LocationDetails,
@@ -14,8 +14,9 @@ import {
   MeasurementsTable,
   TanitaTable,
   HealthDetails,
-  HealthDetails2
+  HealthDetails2,
 } from "../../components";
+import { useStore } from "../../store";
 
 const useStyles = makeStyles((theme) => ({
   breadcrumb: {
@@ -39,9 +40,10 @@ const useStyles = makeStyles((theme) => ({
 
 const ClientDetails = ({ location }) => {
   const { id } = queryString.parse(location.search);
-  console.log(id);
+  const { setSelectedClient } = useStore();
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+  useEffect(() => setSelectedClient(id), [id, setSelectedClient]);
   return (
     <>
       <Breadcrumbs aria-label="breadcrumb" className={classes.breadcrumb}>
@@ -52,7 +54,13 @@ const ClientDetails = ({ location }) => {
         >
           Lista de Clientes
         </Link>
-        <Typography color="textSecondary">Cliente em Detalhe</Typography>
+        <Link
+          color="inherit"
+          to={`/dashboard/clients/details?id=${id}`}
+          className={classes.crumText}
+        >
+          Cliente em Detalhe
+        </Link>
       </Breadcrumbs>
       <Grid container spacing={3}>
         <PersonalDetails fixedHeightPaper={fixedHeightPaper} />

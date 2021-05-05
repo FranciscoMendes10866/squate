@@ -23,6 +23,8 @@ import ListSubheader from "@material-ui/core/ListSubheader";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 
+import { useStore } from "../store";
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -111,6 +113,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AdminDashboardLayout = ({ children, location }) => {
+  const selectedClient = useStore((state) => state.selectedClient);
   const classes = useStyles();
   const history = useHistory();
   const [open, setOpen] = useState(true);
@@ -127,6 +130,18 @@ const AdminDashboardLayout = ({ children, location }) => {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const handleHealthInfo = () => {
+    handleClose();
+    history.push(`/dashboard/clients/health?id=${selectedClient}`);
+  };
+  const handleMeasurements = () => {
+    handleClose();
+    history.push(`/dashboard/clients/measurements?id=${selectedClient}`);
+  };
+  const handleTanita = () => {
+    handleClose();
+    history.push(`/dashboard/clients/tanita?id=${selectedClient}`);
   };
   return (
     <div className={classes.root}>
@@ -165,6 +180,7 @@ const AdminDashboardLayout = ({ children, location }) => {
               color="secondary"
               className={classes.buttonMR}
               startIcon={<AddIcon />}
+              onClick={() => history.push("/dashboard/clients/new-client")}
             >
               Adicionar cliente
             </Button>
@@ -172,14 +188,14 @@ const AdminDashboardLayout = ({ children, location }) => {
           {location.pathname === "/dashboard/clients/details" ? (
             <>
               <Button
-              variant="contained"
-              color="secondary"
-              className={classes.buttonMR}
-              onClick={handleMenu}
-              startIcon={<AddIcon />}
-            >
-              Inserir
-            </Button>
+                variant="contained"
+                color="secondary"
+                className={classes.buttonMR}
+                onClick={handleMenu}
+                startIcon={<AddIcon />}
+              >
+                Inserir
+              </Button>
               <Menu
                 id="menu-appbar"
                 anchorEl={anchorEl}
@@ -195,10 +211,9 @@ const AdminDashboardLayout = ({ children, location }) => {
                 open={dropdown}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Dados Pessoais</MenuItem>
-                <MenuItem onClick={handleClose}>Medições</MenuItem>
-                <MenuItem onClick={handleClose}>Avaliação Tanita</MenuItem>
-                <MenuItem onClick={handleClose}>Info. Saúde</MenuItem>
+                <MenuItem onClick={handleHealthInfo}>Info. Saúde</MenuItem>
+                <MenuItem onClick={handleMeasurements}>Medições</MenuItem>
+                <MenuItem onClick={handleTanita}>Avaliação Tanita</MenuItem>
               </Menu>
             </>
           ) : null}

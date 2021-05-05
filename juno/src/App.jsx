@@ -1,7 +1,15 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import { LoginPage, ClientsPage, ClientDetails } from "./pages";
-import { AdminDashboardLayout } from './layouts'
+import {
+  LoginPage,
+  ClientsPage,
+  ClientDetails,
+  HealthForm,
+  MeasurementsForm,
+  TanitaForm,
+  AddClientForm,
+} from "./pages";
+import { AdminDashboardLayout } from "./layouts";
 
 function App() {
   return (
@@ -10,7 +18,31 @@ function App() {
         <Route exact path="/" component={LoginPage} />
         <AdminDashboardLayout>
           <Route exact path="/dashboard/clients" component={ClientsPage} />
-          <Route exact path="/dashboard/clients/details" component={ClientDetails} />
+          <Route
+            exact
+            path="/dashboard/clients/details"
+            component={ClientDetails}
+          />
+          <Route
+            exact
+            path="/dashboard/clients/health"
+            component={HealthForm}
+          />
+          <Route
+            exact
+            path="/dashboard/clients/measurements"
+            component={MeasurementsForm}
+          />
+          <Route
+            exact
+            path="/dashboard/clients/tanita"
+            component={TanitaForm}
+          />
+          <Route
+            exact
+            path="/dashboard/clients/new-client"
+            component={AddClientForm}
+          />
         </AdminDashboardLayout>
       </Switch>
     </Router>
