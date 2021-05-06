@@ -11,10 +11,10 @@ import {
   LocationDetails,
   ContactDetails,
   PersonalDetails,
-  MeasurementsTable,
-  TanitaTable,
+  Measurements,
+  Tanita,
   HealthDetails,
-  HealthDetails2,
+  HealthDetails2
 } from "../../components";
 import { useStore } from "../../store";
 
@@ -68,16 +68,8 @@ const ClientDetails = ({ location }) => {
         <ContactDetails fixedHeightPaper={fixedHeightPaper} />
         <HealthDetails fixedHeightPaper={fixedHeightPaper} />
         <HealthDetails2 fixedHeightPaper={fixedHeightPaper} />
-        <Grid item xs={12}>
-          <Paper className={classes.paper}>
-            <MeasurementsTable />
-          </Paper>
-        </Grid>
-        <Grid item xs={12}>
-          <Paper className={classes.paper}>
-            <TanitaTable />
-          </Paper>
-        </Grid>
+        <Measurements />
+        <Tanita />
       </Grid>
     </>
   );
