@@ -31,13 +31,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function generate(element) {
-  return [0, 1, 2].map((value) =>
-    cloneElement(element, {
-      key: value,
-    })
-  );
-}
+const data = [
+  {
+    id: 1,
+    fullName: "Francisco Mendes",
+    objective: "Ganhar Músculo",
+  },
+  {
+    id: 2,
+    fullName: "Rodrigo Mercador",
+    objective: "Perder Peso",
+  },
+  {
+    id: 3,
+    fullName: "Inês Fonseca",
+    objective: "Tonificar",
+  },
+];
 
 const ClientsPage = () => {
   const classes = useStyles();
@@ -59,25 +69,29 @@ const ClientsPage = () => {
       <Grid item xs={12}>
         <div className={classes.demo}>
           <List dense={false}>
-            {generate(
-              <>
-                <ListItem>
-                  <ListItemAvatar>
-                    <Avatar>N</Avatar>
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary="Nome do cliente"
-                    secondary="Objectivo do Cliente"
-                  />
-                  <ListItemSecondaryAction>
-                    <IconButton edge="end" aria-label="delete">
-                      <VisibilityIcon onClick={() => handleSelectClient(22)} />
-                    </IconButton>
-                  </ListItemSecondaryAction>
-                </ListItem>
-                <Divider variant="inset" component="li" />
-              </>
-            )}
+            {data.map((el) => {
+              return (
+                <div key={el.id}>
+                  <ListItem>
+                    <ListItemAvatar>
+                      <Avatar>{el.fullName[0]}</Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary={el.fullName}
+                      secondary={el.objective}
+                    />
+                    <ListItemSecondaryAction>
+                      <IconButton edge="end" aria-label="delete">
+                        <VisibilityIcon
+                          onClick={() => handleSelectClient(el.id)}
+                        />
+                      </IconButton>
+                    </ListItemSecondaryAction>
+                  </ListItem>
+                  <Divider variant="inset" component="li" />
+                </div>
+              );
+            })}
           </List>
         </div>
       </Grid>

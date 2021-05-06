@@ -4,7 +4,6 @@ import Grid from "@material-ui/core/Grid";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import { makeStyles } from "@material-ui/core/styles";
 import queryString from "query-string";
-import Paper from "@material-ui/core/Paper";
 import { useEffect } from "react";
 
 import {
@@ -41,9 +40,14 @@ const useStyles = makeStyles((theme) => ({
 const ClientDetails = ({ location }) => {
   const { id } = queryString.parse(location.search);
   const { setSelectedClient } = useStore();
+  const selectedClient = useStore(state => state.selectedClient)
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-  useEffect(() => setSelectedClient(id), [id, setSelectedClient]);
+  useEffect(() => {
+    if (selectedClient !== id) {
+      setSelectedClient(id)
+    }
+  }, [id, selectedClient, setSelectedClient]);
   return (
     <>
       <Breadcrumbs aria-label="breadcrumb" className={classes.breadcrumb}>
