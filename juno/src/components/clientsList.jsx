@@ -87,9 +87,9 @@ const ClientsPage = ({ el }) => {
           </Avatar>
         </ListItemAvatar>
         <ListItemText primary={el.fullName} secondary={el.objective} />
-        <ListItemSecondaryAction>
+        <ListItemSecondaryAction onClick={() => handleSelectClient(el.id)}>
           <IconButton edge="end" aria-label="delete">
-            <VisibilityIcon onClick={() => handleSelectClient(el.id)} />
+            <VisibilityIcon />
           </IconButton>
         </ListItemSecondaryAction>
       </ListItem>
