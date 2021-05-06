@@ -1,5 +1,5 @@
 import { useHistory } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -114,6 +114,7 @@ const useStyles = makeStyles((theme) => ({
 
 const AdminDashboardLayout = ({ children, location }) => {
   const selectedClient = useStore((state) => state.selectedClient);
+  const { setSelectedClient } = useStore();
   const classes = useStyles();
   const history = useHistory();
   const [open, setOpen] = useState(true);
@@ -143,6 +144,11 @@ const AdminDashboardLayout = ({ children, location }) => {
     handleClose();
     history.push(`/dashboard/clients/tanita?id=${selectedClient}`);
   };
+  useEffect(() => {
+    if (location.pathname === "/dashboard/clients") {
+      setSelectedClient("")
+    }
+  }, [location.pathname, setSelectedClient])
   return (
     <div className={classes.root}>
       {/* Navbar */}
@@ -171,7 +177,7 @@ const AdminDashboardLayout = ({ children, location }) => {
             noWrap
             className={classes.title}
           >
-            Dashboard
+            Painel
           </Typography>
           {/* Add Client Button */}
           {location.pathname === "/dashboard/clients" ? (
