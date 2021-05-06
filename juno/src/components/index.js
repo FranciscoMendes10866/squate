@@ -5,3 +5,5 @@ export { default as Measurements } from "./details/measurements/index";
 export { default as Tanita } from "./details/tanita/index";
 export { default as HealthDetails } from "./details/health";
 export { default as HealthDetails2 } from "./details/health2";
+
+export { default as ClientsList } from "./clientsList";
