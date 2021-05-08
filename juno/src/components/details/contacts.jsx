@@ -20,7 +20,7 @@ const ContactDetails = ({ fixedHeightPaper }) => {
   return (
     <Grid item xs={12} md={4}>
       <Paper className={fixedHeightPaper}>
-        <Typography variant="h5">Contactos</Typography>
+        <Typography variant="h6" color="primary">Contactos</Typography>
         <div className={classes.wrapper}>
           <div className={classes.items}>
             <Typography variant="subtitle1">Telemóvel:</Typography>

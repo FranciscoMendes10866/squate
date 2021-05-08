@@ -20,7 +20,7 @@ const PersonalDetails = ({ fixedHeightPaper }) => {
   return (
     <Grid item xs={12} md={4}>
       <Paper className={fixedHeightPaper}>
-        <Typography variant="h5">Dados Pessoais</Typography>
+        <Typography variant="h6" color="primary">Perfil</Typography>
         <div className={classes.wrapper}>
           <div className={classes.items}>
             <Typography variant="subtitle1">Nome Completo:</Typography>
