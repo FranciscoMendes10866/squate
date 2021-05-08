@@ -261,7 +261,7 @@ const AdminDashboardLayout = ({ children, location }) => {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
+        <Container maxWidthLg className={classes.container}>
           {children}
         </Container>
       </main>

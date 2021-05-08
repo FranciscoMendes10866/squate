@@ -5,7 +5,7 @@ import { ResponsiveLine } from "@nivo/line";
 const useStyles = makeStyles((theme) => ({
   paper: {
     display: "flex",
-    overflow: "auto",
+    overflow: "hidden",
     flexDirection: "column",
   },
   fixedHeight: {
