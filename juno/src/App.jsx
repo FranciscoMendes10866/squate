@@ -8,6 +8,7 @@ import {
   MeasurementsForm,
   TanitaForm,
   AddClientForm,
+  PatchMeasurement
 } from "./pages";
 import { AdminDashboardLayout } from "./layouts";
 
@@ -42,6 +43,11 @@ function App() {
             exact
             path="/dashboard/clients/new-client"
             component={AddClientForm}
+          />
+          <Route
+            exact
+            path="/dashboard/clients/patch/measurement"
+            component={PatchMeasurement}
           />
         </AdminDashboardLayout>
       </Switch>

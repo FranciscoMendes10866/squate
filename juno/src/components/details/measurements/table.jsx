@@ -7,6 +7,7 @@ import TableRow from "@material-ui/core/TableRow";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import EditIcon from "@material-ui/icons/Edit";
+import { useHistory } from 'react-router-dom'
 
 function createData(id, peitoral, quadril, cintura, coxa, braco, contraido) {
   return { id, peitoral, quadril, cintura, coxa, braco, contraido };
@@ -28,6 +29,7 @@ const useStyles = makeStyles({
 });
 
 const MeasurementsTable = () => {
+  const history = useHistory()
   const classes = useStyles();
   return (
     <>
@@ -66,7 +68,7 @@ const MeasurementsTable = () => {
                   size="small"
                   component="span"
                   className={classes.space}
-                  onClick={() => console.log(`Editar ${row.id}`)}
+                  onClick={() => history.push(`/dashboard/clients/patch/measurement?id=${row.id}`)}
                 >
                   <EditIcon />
                 </IconButton>
