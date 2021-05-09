@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { ClientsList } from "../../components";
+import { ClientsList } from "../../components/admin";
 
 const useStyles = makeStyles((theme) => ({
   breadcrumb: {

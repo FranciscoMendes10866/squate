@@ -12,7 +12,7 @@ import {
   HealthDetails,
   HealthDetails2,
   ClientProfile
-} from "../../components";
+} from "../../components/admin";
 import { useStore } from "../../store";
 
 const useStyles = makeStyles((theme) => ({
