@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ContactDetails = ({ fixedHeightPaper }) => {
+const ContactDetails = ({ fixedHeightPaper, data }) => {
   const classes = useStyles()
   return (
     <Grid item xs={12} md={4}>
@@ -24,15 +24,15 @@ const ContactDetails = ({ fixedHeightPaper }) => {
         <div className={classes.wrapper}>
           <div className={classes.items}>
             <Typography variant="subtitle1">Telemóvel:</Typography>
-            <Typography variant="subtitle1">91* *** ***</Typography>
+            <Typography variant="subtitle1">{data.phoneNumber}</Typography>
           </div>
           <div className={classes.items}>
             <Typography variant="subtitle1">Emergência:</Typography>
-            <Typography variant="subtitle1">92* *** ***</Typography>
+            <Typography variant="subtitle1">{data.emergency}</Typography>
           </div>
           <div className={classes.items}>
             <Typography variant="subtitle1">Email:</Typography>
-            <Typography variant="subtitle1">cliente@hotmail.com</Typography>
+            <Typography variant="subtitle1">{data.email}</Typography>
           </div>
         </div>
       </Paper>

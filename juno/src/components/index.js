@@ -7,3 +7,4 @@ export { default as HealthDetails } from "./details/health";
 export { default as HealthDetails2 } from "./details/health2";
 
 export { default as ClientsList } from "./clientsList";
+export { default as ClientProfile } from "./clientProfile";

@@ -2,6 +2,8 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import IconButton from "@material-ui/core/IconButton";
+import EditIcon from "@material-ui/icons/Edit";
 
 const useStyles = makeStyles({
   wrapper: {
@@ -13,34 +15,49 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "space-between",
   },
+  space: {
+    marginLeft: 2,
+  },
 });
 
-const PersonalDetails = ({ fixedHeightPaper }) => {
+const PersonalDetails = ({ fixedHeightPaper, data }) => {
   const classes = useStyles();
   return (
     <Grid item xs={12} md={4}>
       <Paper className={fixedHeightPaper}>
-        <Typography variant="h6" color="primary">Perfil</Typography>
+        <div className={classes.items}>
+          <Typography variant="h6" color="primary">
+            Perfil
+          </Typography>
+          <IconButton
+            color="secondary"
+            size="small"
+            component="span"
+            className={classes.space}
+          >
+            <EditIcon />
+          </IconButton>
+        </div>
         <div className={classes.wrapper}>
           <div className={classes.items}>
             <Typography variant="subtitle1">Nome Completo:</Typography>
-            <Typography variant="subtitle1">Cliente Antunes</Typography>
+            <Typography variant="subtitle1">{data.fullName}</Typography>
           </div>
           <div className={classes.items}>
             <Typography variant="subtitle1">Nascimento:</Typography>
-            <Typography variant="subtitle1">12-12-2012</Typography>
+            <Typography variant="subtitle1">{data.birthday}</Typography>
           </div>
           <div className={classes.items}>
             <Typography variant="subtitle1">Sexo:</Typography>
-            <Typography variant="subtitle1">Masculino</Typography>
+            <Typography variant="subtitle1">{data.gender}</Typography>
           </div>
           <div className={classes.items}>
             <Typography variant="subtitle1">Peso (kg):</Typography>
-            <Typography variant="subtitle1">74</Typography>
+            <Typography variant="subtitle1">{data.weight}</Typography>
           </div>
           <div className={classes.items}>
             <Typography variant="subtitle1">Altura (cm):</Typography>
-            <Typography variant="subtitle1">178</Typography>
+            <Typography variant="subtitle1">{data.height}</Typography>
           </div>
         </div>
       </Paper>

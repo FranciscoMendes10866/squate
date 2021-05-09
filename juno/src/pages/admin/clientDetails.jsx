@@ -7,13 +7,11 @@ import queryString from "query-string";
 import { useEffect } from "react";
 
 import {
-  LocationDetails,
-  ContactDetails,
-  PersonalDetails,
   Measurements,
   Tanita,
   HealthDetails,
-  HealthDetails2
+  HealthDetails2,
+  ClientProfile
 } from "../../components";
 import { useStore } from "../../store";
 
@@ -67,9 +65,7 @@ const ClientDetails = ({ location }) => {
         </Link>
       </Breadcrumbs>
       <Grid container spacing={3}>
-        <PersonalDetails fixedHeightPaper={fixedHeightPaper} />
-        <LocationDetails fixedHeightPaper={fixedHeightPaper} />
-        <ContactDetails fixedHeightPaper={fixedHeightPaper} />
+        <ClientProfile fixedHeightPaper={fixedHeightPaper} userId={id} />
         <HealthDetails fixedHeightPaper={fixedHeightPaper} />
         <HealthDetails2 fixedHeightPaper={fixedHeightPaper} />
         <Measurements />

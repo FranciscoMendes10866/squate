@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   },
 });
 
-const LocationDetails = ({ fixedHeightPaper }) => {
+const LocationDetails = ({ fixedHeightPaper, data }) => {
   const classes = useStyles()
   return (
     <Grid item xs={12} md={4}>
@@ -24,19 +24,19 @@ const LocationDetails = ({ fixedHeightPaper }) => {
         <div className={classes.wrapper}>
           <div className={classes.items}>
             <Typography variant="subtitle1">Morada:</Typography>
-            <Typography variant="subtitle1">Cantanhede</Typography>
+            <Typography variant="subtitle1">{data.address}</Typography>
           </div>
           <div className={classes.items}>
             <Typography variant="subtitle1">Código-Postal:</Typography>
-            <Typography variant="subtitle1">3060-106</Typography>
+            <Typography variant="subtitle1">{data.zipCode}</Typography>
           </div>
           <div className={classes.items}>
             <Typography variant="subtitle1">Naturalidade:</Typography>
-            <Typography variant="subtitle1">Coimbra</Typography>
+            <Typography variant="subtitle1">{data.city}</Typography>
           </div>
           <div className={classes.items}>
             <Typography variant="subtitle1">Nacionalidade:</Typography>
-            <Typography variant="subtitle1">Portuguesa</Typography>
+            <Typography variant="subtitle1">{data.nationality}</Typography>
           </div>
         </div>
       </Paper>
