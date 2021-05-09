@@ -1,6 +1,7 @@
 import { LocationDetails, ContactDetails, PersonalDetails } from ".";
 
 const data = {
+  id: 12,
   fullName: "João Gomes",
   birthday: "12-12-1998",
   gender: "Masculino",

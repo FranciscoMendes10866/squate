@@ -4,6 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import EditIcon from "@material-ui/icons/Edit";
+import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles({
   wrapper: {
@@ -21,6 +22,7 @@ const useStyles = makeStyles({
 });
 
 const PersonalDetails = ({ fixedHeightPaper, data }) => {
+  const history = useHistory()
   const classes = useStyles();
   return (
     <Grid item xs={12} md={4}>
@@ -34,6 +36,7 @@ const PersonalDetails = ({ fixedHeightPaper, data }) => {
             size="small"
             component="span"
             className={classes.space}
+            onClick={() => history.push(`/dashboard/clients/patch/profile?id=${data.id}`)}
           >
             <EditIcon />
           </IconButton>
