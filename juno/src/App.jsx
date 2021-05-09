@@ -9,7 +9,8 @@ import {
   TanitaForm,
   AddClientForm,
   PatchMeasurement,
-  PatchProfile
+  PatchProfile,
+  PatchTanita
 } from "./pages";
 import { AdminDashboardLayout } from "./layouts";
 
@@ -54,6 +55,11 @@ function App() {
             exact
             path="/dashboard/clients/patch/profile"
             component={PatchProfile}
+          />
+          <Route
+            exact
+            path="/dashboard/clients/patch/tanita"
+            component={PatchTanita}
           />
         </AdminDashboardLayout>
       </Switch>

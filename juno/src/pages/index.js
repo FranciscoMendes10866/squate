@@ -9,3 +9,4 @@ export { default as AddClientForm } from "./admin/addForms/addClient";
 
 export { default as PatchMeasurement } from "./admin/patchForms/measurements";
 export { default as PatchProfile } from "./admin/patchForms/profile";
+export { default as PatchTanita } from "./admin/patchForms/tanita";

@@ -7,6 +7,7 @@ import TableRow from "@material-ui/core/TableRow";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import EditIcon from "@material-ui/icons/Edit";
+import { useHistory } from 'react-router-dom'
 
 function createData(
   id,
@@ -38,6 +39,7 @@ const useStyles = makeStyles({
 });
 
 const TanitaTable = () => {
+  const history = useHistory()
   const classes = useStyles();
   return (
     <>
@@ -80,7 +82,7 @@ const TanitaTable = () => {
                   size="small"
                   component="span"
                   className={classes.space}
-                  onClick={() => console.log(`Editar ${row.id}`)}
+                  onClick={() => history.push(`/dashboard/clients/patch/tanita?id=${row.id}`)}
                 >
                   <EditIcon />
                 </IconButton>
