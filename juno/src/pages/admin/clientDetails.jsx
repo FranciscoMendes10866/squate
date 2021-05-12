@@ -9,8 +9,6 @@ import { useEffect } from "react";
 import {
   Measurements,
   Tanita,
-  HealthDetails,
-  HealthDetails2,
   ClientProfile
 } from "../../components/admin";
 import { useStore } from "../../store";
@@ -66,8 +64,6 @@ const ClientDetails = ({ location }) => {
       </Breadcrumbs>
       <Grid container spacing={3}>
         <ClientProfile fixedHeightPaper={fixedHeightPaper} userId={id} />
-        <HealthDetails fixedHeightPaper={fixedHeightPaper} />
-        <HealthDetails2 fixedHeightPaper={fixedHeightPaper} />
         <Measurements />
         <Tanita />
       </Grid>
