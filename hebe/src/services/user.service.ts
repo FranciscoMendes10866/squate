@@ -1,11 +1,12 @@
 import { PrismaClient } from '@prisma/client'
+
 import { ExistingCodesDTO, CreateNewUserDTO, CreateAdminDTO } from '@utils/user.dto'
 
 const prisma = new PrismaClient()
 const { GEN_CHARS } = process.env
 
 class UserService {
-  prisma
+  prisma: any
   constructor () {
     this.prisma = prisma
   }
