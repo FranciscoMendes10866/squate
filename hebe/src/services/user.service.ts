@@ -22,7 +22,6 @@ class UserService {
       .catch(err => {
         throw boomify(err)
       })
-
       .finally(async () => {
         await this.prisma.$disconnect()
       })
@@ -53,7 +52,6 @@ class UserService {
         .catch(err => {
           throw boomify(err)
         })
-
         .finally(async () => {
           await this.prisma.$disconnect()
         })
@@ -67,7 +65,6 @@ class UserService {
       .catch(err => {
         throw boomify(err)
       })
-
       .finally(async () => {
         await this.prisma.$disconnect()
       })
