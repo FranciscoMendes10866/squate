@@ -28,10 +28,6 @@ class UserService {
       })
   }
 
-  async index (user: any): Promise<number> {
-    return user.id
-  }
-
   async createNewUser (): Promise<CreateNewUserDTO> {
     const users: ExistingCodesDTO[] = await this.getExistingCodes()
     let newUserCode: string = this.genCode()
