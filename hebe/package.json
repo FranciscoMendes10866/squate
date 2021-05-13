@@ -39,9 +39,6 @@
     "fastify-helmet": "^5.3.1",
     "fastify-jwt": "^2.4.0",
     "fastify-plugin": "^3.0.0",
-    "fastify-rate-limit": "^5.5.0",
-    "fastify-redis": "^4.3.0",
-    "ioredis": "^4.26.0",
     "pino-pretty": "^4.7.1",
     "prom-client": "^13.1.0"
   },
