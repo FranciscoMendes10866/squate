@@ -29,11 +29,11 @@ class UserService {
 
   async createNewUser (): Promise<CreateNewUserDTO> {
     const users: ExistingCodesDTO[] = await this.getExistingCodes()
-    let newUserCode: string = this.genCode()
+    let newUserCode: string = this.generateCypher(8)
     while (!!users.find(user => user.code === newUserCode) === true) {
-      newUserCode = this.genCode()
+      newUserCode = this.generateCypher(8)
     }
-    const password = this.genPassword()
+    const password = this.generateCypher(12)
     const hashed = await hash(password, 4)
     return { code: newUserCode, password, hashed }
   }
@@ -70,17 +70,7 @@ class UserService {
       })
   }
 
-  genCode (): string {
-    const len = 8
-    let text = ''
-    for (let i = 0; i < len; i++) {
-      text += GEN_CHARS.charAt(Math.floor(Math.random() * GEN_CHARS.length))
-    }
-    return text
-  }
-
-  genPassword (): string {
-    const len = 12
+  generateCypher (len: number): string {
     let text = ''
     for (let i = 0; i < len; i++) {
       text += GEN_CHARS.charAt(Math.floor(Math.random() * GEN_CHARS.length))
