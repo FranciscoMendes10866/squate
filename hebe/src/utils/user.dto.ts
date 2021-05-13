@@ -5,11 +5,10 @@ export interface ExistingCodesDTO {
 export interface CreateNewUserDTO {
     code: string
     password: string
+    hashed: string
 }
 
 export interface CreateAdminDTO {
-    id: string
     code: string
     password: string
-    role: string
 }

@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+import { hash } from 'bcrypt'
 
 import { ExistingCodesDTO, CreateNewUserDTO, CreateAdminDTO } from '@utils/user.dto'
 
@@ -30,20 +31,22 @@ class UserService {
       newUserCode = this.genCode()
     }
     const password = this.genPassword()
-    return { code: newUserCode, password }
+    const hashed = await hash(password, 4)
+    return { code: newUserCode, password, hashed }
   }
 
   async createAdmin (): Promise<CreateAdminDTO | null> {
-    const exist = await this.verifyAdmin()
+    const exist: boolean = await this.verifyAdmin()
     if (!exist) {
-      const { code, password }: CreateNewUserDTO = await this.createNewUser()
-      return await this.prisma.user.create({
+      const { code, password, hashed }: CreateNewUserDTO = await this.createNewUser()
+      await this.prisma.user.create({
         data: {
           code,
-          password,
+          password: hashed,
           role: 'admin'
         }
       })
+      return { code, password }
     }
     return null
   }
