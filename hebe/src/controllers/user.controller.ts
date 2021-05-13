@@ -21,6 +21,19 @@ const UserController = async (app, opts) => {
     metricsEnd(init)
     return reply.send({ userId })
   })
+
+  app.get('/api/create-admin', async (request: FastifyRequest, reply: FastifyReply) => {
+    const init = metricsInit()
+
+    const result = await UserService.createAdmin()
+    if (result === null) {
+      metricsEnd(init)
+      return reply.send({ error: 'Admin already exists b****!' })
+    }
+
+    metricsEnd(init)
+    return reply.send({ ...result })
+  })
 }
 
 export default UserController
