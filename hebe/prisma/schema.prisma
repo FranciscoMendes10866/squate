@@ -1,0 +1,63 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id String @id @default(cuid())
+  code String @unique
+  password String
+  role String
+  profile Profile?
+  measurement Measurement[]
+  tanita Tanita[]
+}
+
+model Profile {
+  id String @id @default(cuid())
+  firstName String
+  lastName String
+  birthday String
+  gender String
+  weight Int
+  height Int
+  address String
+  zipCode String
+  nationality String
+  city String
+  phoneNumber Int
+  emergency Int
+  email String
+  user User @relation(fields: [user_id], references: [id])
+  user_id String @unique
+}
+
+model Measurement {
+  id String @id @default(cuid())
+  peitoral Int
+  quadril Int
+  cintura Int
+  coxa Int
+  braco Int
+  bracoContraido Int
+  user User @relation(fields: [user_id], references: [id])
+  user_id String @unique
+}
+
+model Tanita {
+  id String @id @default(cuid())
+  gordura_corpural Int
+  massa_muscular Int
+  massa_ossea Int
+  imc Int
+  metabolismo_basal Int
+  idade_metabolica Int
+  agua Int
+  gordura_visceral Int
+  user User @relation(fields: [user_id], references: [id])
+  user_id String @unique
+}
