@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+import { boomify } from '@hapi/boom'
 import { hash } from 'bcrypt'
 
 import { ExistingCodesDTO, CreateNewUserDTO, CreateAdminDTO } from '@utils/user.dto'
@@ -18,6 +19,13 @@ class UserService {
         code: true
       }
     })
+      .catch(err => {
+        throw boomify(err)
+      })
+
+      .finally(async () => {
+        await this.prisma.$disconnect()
+      })
   }
 
   async index (user: any): Promise<number> {
@@ -46,6 +54,13 @@ class UserService {
           role: 'admin'
         }
       })
+        .catch(err => {
+          throw boomify(err)
+        })
+
+        .finally(async () => {
+          await this.prisma.$disconnect()
+        })
       return { code, password }
     }
     return null
@@ -53,6 +68,13 @@ class UserService {
 
   async verifyAdmin (): Promise<boolean> {
     return !!await this.prisma.user.findFirst({ where: { role: 'admin' } })
+      .catch(err => {
+        throw boomify(err)
+      })
+
+      .finally(async () => {
+        await this.prisma.$disconnect()
+      })
   }
 
   genCode (): string {
