@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client'
 import { boomify } from '@hapi/boom'
 import { hash } from 'bcrypt'
 
-import { ExistingCodesDTO, CreateNewUserDTO, CreateAdminDTO } from '@utils/user.dto'
+import { ExistingCodesDTO, CreateNewUserDTO, CreateResDTO } from '@utils/user.dto'
 
 const prisma = new PrismaClient()
 const { GEN_CHARS } = process.env
@@ -38,26 +38,43 @@ class UserService {
     return { code: newUserCode, password, hashed }
   }
 
-  async createAdmin (): Promise<CreateAdminDTO | null> {
+  async createAdmin (): Promise<CreateResDTO | null> {
     const exist: boolean = await this.verifyAdmin()
     if (!exist) {
       const { code, password, hashed }: CreateNewUserDTO = await this.createNewUser()
-      await this.prisma.user.create({
-        data: {
-          code,
-          password: hashed,
-          role: 'admin'
-        }
-      })
-        .catch(err => {
-          throw boomify(err)
-        })
-        .finally(async () => {
-          await this.prisma.$disconnect()
-        })
+      await this.createUserRecord(code, hashed, 'admin')
       return { code, password }
     }
     return null
+  }
+
+  async createClient (body): Promise<CreateResDTO> {
+    const { code, password, hashed }: CreateNewUserDTO = await this.createNewUser()
+    const userId: string = await this.createUserRecord(code, hashed, 'client')
+    await this.prisma.profile.create({
+      data: {
+        ...body,
+        user: { connect: { id: userId } }
+      }
+    })
+    return { code, password }
+  }
+
+  async createUserRecord (code: string, password: string, role: string): Promise<string> {
+    const user = await this.prisma.user.create({
+      data: {
+        code,
+        password,
+        role
+      }
+    })
+      .catch(err => {
+        throw boomify(err)
+      })
+      .finally(async () => {
+        await this.prisma.$disconnect()
+      })
+    return user.id
   }
 
   async verifyAdmin (): Promise<boolean> {

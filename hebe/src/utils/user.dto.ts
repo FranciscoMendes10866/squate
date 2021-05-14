@@ -8,7 +8,7 @@ export interface CreateNewUserDTO {
     hashed: string
 }
 
-export interface CreateAdminDTO {
+export interface CreateResDTO {
     code: string
     password: string
 }
