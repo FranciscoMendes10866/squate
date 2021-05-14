@@ -26,7 +26,7 @@ const UserController = async (app, opts) => {
     const result: CreateResDTO = await UserService.createClient(request.body)
 
     metricsEnd(init)
-    return reply.send({ result })
+    return reply.send({ ...result })
   })
 }
 
