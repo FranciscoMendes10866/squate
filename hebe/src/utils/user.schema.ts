@@ -22,3 +22,16 @@ export const createClientSchema = {
     }
   }
 }
+
+export const signInSchema = {
+  schema: {
+    body: {
+      type: 'object',
+      required: ['code', 'password'],
+      properties: {
+        code: { type: 'string' },
+        password: { type: 'string' }
+      }
+    }
+  }
+}
