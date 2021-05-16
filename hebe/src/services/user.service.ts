@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client'
 import { boomify } from '@hapi/boom'
 import { hash, compare } from 'bcrypt'
 
-import { ExistingCodesDTO, CreateNewUserDTO, CreateResDTO, SignInDTO, FindUserDTO, CreateClientInputDTO } from '@utils/user.dto'
+import { ExistingCodesDTO, CreateNewUserDTO, CreateResDTO, SignInDTO, FindUserDTO, CreateClientInputDTO, FindClientsDTO } from '@utils/user.dto'
 
 const prisma = new PrismaClient()
 const { GEN_CHARS } = process.env
@@ -83,6 +83,22 @@ class UserService {
     const val = await compare(password, user.password)
     if (!val) return null
     return { id: user.id, role: user.role }
+  }
+
+  async findClients (): Promise<FindClientsDTO[]> {
+    return await this.prisma.user.findMany({
+      where: { role: 'client' },
+      select: {
+        id: true,
+        profile: {
+          select: {
+            firstName: true,
+            lastName: true,
+            objective: true
+          }
+        }
+      }
+    })
   }
 
   async findByCode (code: string): Promise<FindUserDTO> {

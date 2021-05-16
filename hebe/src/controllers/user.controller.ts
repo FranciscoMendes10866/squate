@@ -3,7 +3,7 @@ import { FastifyRequest, FastifyReply } from 'fastify'
 import { metricsInit, metricsEnd } from '@providers/prom.provider'
 import { UserService } from '@services/index'
 
-import { CreateResDTO, SignInDTO, SignInResDTO } from '@utils/user.dto'
+import { CreateResDTO, FindClientsDTO, SignInDTO, SignInResDTO } from '@utils/user.dto'
 import { createClientSchema, signInSchema } from '@utils/user.schema'
 
 const UserController = async (app, opts) => {
@@ -44,6 +44,15 @@ const UserController = async (app, opts) => {
 
     metricsEnd(init)
     return reply.send({ user: { token, role: result.role } })
+  })
+
+  app.get('/api/clients', async (request: FastifyRequest, reply: FastifyReply): Promise<FindClientsDTO[]> => {
+    const init = metricsInit()
+
+    const results: FindClientsDTO[] = await UserService.findClients()
+
+    metricsEnd(init)
+    return reply.send(results)
   })
 }
 

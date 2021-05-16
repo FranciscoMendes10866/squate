@@ -47,3 +47,12 @@ export interface SignInResDTO {
     role: string;
   };
 }
+
+export interface FindClientsDTO {
+  id: string;
+  profile: {
+    firstName: string;
+    lastName: string;
+    objective: string;
+  }
+}
