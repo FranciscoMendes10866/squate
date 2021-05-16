@@ -52,7 +52,7 @@ class UserService {
   }
 
   async destroy (id: string): Promise<void> {
-    return await this.prisma.measurement.delete({ where: id })
+    await this.prisma.measurement.delete({ where: { id } })
       .catch(err => {
         throw boomify(err)
       })
