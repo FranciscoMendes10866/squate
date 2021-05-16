@@ -6,7 +6,7 @@ import compress from 'fastify-compress'
 
 import { logger } from '@utils/index'
 import { AuthGuard } from '@middlewares/index'
-import { MetricsController, UserController } from '@controllers/index'
+import { MetricsController, UserController, MeasurementsController } from '@controllers/index'
 
 const { NODE_ENV, CORS_ORIGIN, JWT_SECRET } = process.env
 
@@ -21,5 +21,6 @@ app.register(AuthGuard)
 app.register(compress)
 app.register(MetricsController)
 app.register(UserController)
+app.register(MeasurementsController)
 
 export default app

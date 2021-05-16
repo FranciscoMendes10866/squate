@@ -46,7 +46,7 @@ model Measurement {
   braco Int
   bracoContraido Int
   user User @relation(fields: [user_id], references: [id])
-  user_id String @unique
+  user_id String
 }
 
 model Tanita {
@@ -60,5 +60,5 @@ model Tanita {
   agua Int
   gordura_visceral Int
   user User @relation(fields: [user_id], references: [id])
-  user_id String @unique
+  user_id String
 }
