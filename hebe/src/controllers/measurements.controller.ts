@@ -11,7 +11,7 @@ const MeasurementsController = async (app, opts) => {
 
     const body: any = request.body
     const { clientId }: any = request.params
-    const result = await MeasurementsService.store(body, clientId)
+    const result: BodyDTO = await MeasurementsService.store(body, clientId)
 
     metricsEnd(init)
     return reply.send({ ...result })

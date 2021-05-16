@@ -11,7 +11,7 @@ class UserService {
     this.prisma = prisma
   }
 
-  async store (body: BodyDTO, clientId: string): Promise<BodyDTO[]> {
+  async store (body: BodyDTO, clientId: string): Promise<BodyDTO> {
     return await this.prisma.measurement.create({
       data: {
         ...body,
@@ -42,7 +42,18 @@ class UserService {
   }
 
   async findAll (clientId: string): Promise<FindAllDTO[]> {
-    return await this.prisma.measurement.findMany({ where: { user_id: clientId } })
+    return await this.prisma.measurement.findMany({
+      where: { user_id: clientId },
+      select: {
+        id: true,
+        peitoral: true,
+        quadril: true,
+        cintura: true,
+        coxa: true,
+        braco: true,
+        bracoContraido: true
+      }
+    })
       .catch(err => {
         throw boomify(err)
       })
