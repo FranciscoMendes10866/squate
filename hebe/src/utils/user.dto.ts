@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 export interface ExistingCodesDTO {
   code: string;
 }
@@ -55,4 +56,23 @@ export interface FindClientsDTO {
     lastName: string;
     objective: string;
   }
+}
+
+export interface FindClientProfileDTO {
+  id: string;
+  firstName: string;
+  lastName: string;
+  birthday: string;
+  gender: string;
+  weight: number;
+  height: number;
+  address: string;
+  zipCode: string;
+  nationality: string;
+  city: string;
+  phoneNumber: number;
+  emergency: number;
+  email: string;
+  objective: string;
+  user_id: string;
 }

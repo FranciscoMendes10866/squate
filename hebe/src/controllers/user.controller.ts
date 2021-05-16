@@ -3,8 +3,8 @@ import { FastifyRequest, FastifyReply } from 'fastify'
 import { metricsInit, metricsEnd } from '@providers/prom.provider'
 import { UserService } from '@services/index'
 
-import { CreateResDTO, FindClientsDTO, SignInDTO, SignInResDTO } from '@utils/user.dto'
-import { createClientSchema, signInSchema } from '@utils/user.schema'
+import { CreateResDTO, FindClientProfileDTO, FindClientsDTO, SignInDTO, SignInResDTO } from '@utils/user.dto'
+import { createClientSchema, FindProfileSchema, signInSchema } from '@utils/user.schema'
 
 const UserController = async (app, opts) => {
   app.get('/api/create-admin', async (request: FastifyRequest, reply: FastifyReply): Promise<CreateResDTO | null> => {
@@ -50,6 +50,16 @@ const UserController = async (app, opts) => {
     const init = metricsInit()
 
     const results: FindClientsDTO[] = await UserService.findClients()
+
+    metricsEnd(init)
+    return reply.send(results)
+  })
+
+  app.get('/api/profile/:clientId', FindProfileSchema, async (request: FastifyRequest, reply: FastifyReply): Promise<FindClientProfileDTO> => {
+    const init = metricsInit()
+
+    const { clientId }: any = request.params
+    const results: FindClientProfileDTO = await UserService.findClientProfile(clientId)
 
     metricsEnd(init)
     return reply.send(results)

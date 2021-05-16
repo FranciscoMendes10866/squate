@@ -2,24 +2,34 @@ import { PrismaClient } from '@prisma/client'
 import { boomify } from '@hapi/boom'
 import { hash, compare } from 'bcrypt'
 
-import { ExistingCodesDTO, CreateNewUserDTO, CreateResDTO, SignInDTO, FindUserDTO, CreateClientInputDTO, FindClientsDTO } from '@utils/user.dto'
+import {
+  ExistingCodesDTO,
+  CreateNewUserDTO,
+  CreateResDTO,
+  SignInDTO,
+  FindUserDTO,
+  CreateClientInputDTO,
+  FindClientsDTO,
+  FindClientProfileDTO
+} from '@utils/user.dto'
 
 const prisma = new PrismaClient()
 const { GEN_CHARS } = process.env
 
 class UserService {
-  prisma: any
+  prisma: any;
   constructor () {
     this.prisma = prisma
   }
 
   async getExistingCodes (): Promise<ExistingCodesDTO[]> {
-    return await this.prisma.user.findMany({
-      select: {
-        code: true
-      }
-    })
-      .catch(err => {
+    return await this.prisma.user
+      .findMany({
+        select: {
+          code: true
+        }
+      })
+      .catch((err) => {
         throw boomify(err)
       })
       .finally(async () => {
@@ -30,7 +40,7 @@ class UserService {
   async createNewUser (): Promise<CreateNewUserDTO> {
     const users: ExistingCodesDTO[] = await this.getExistingCodes()
     let newUserCode: string = this.generateCypher(8)
-    while (!!users.find(user => user.code === newUserCode) === true) {
+    while (!!users.find((user) => user.code === newUserCode) === true) {
       newUserCode = this.generateCypher(8)
     }
     const password = this.generateCypher(12)
@@ -41,7 +51,8 @@ class UserService {
   async createAdmin (): Promise<CreateResDTO | null> {
     const exist: boolean = await this.verifyAdmin()
     if (!exist) {
-      const { code, password, hashed }: CreateNewUserDTO = await this.createNewUser()
+      const { code, password, hashed }: CreateNewUserDTO =
+        await this.createNewUser()
       await this.createUserRecord(code, hashed, 'admin')
       return { code, password }
     }
@@ -49,7 +60,8 @@ class UserService {
   }
 
   async createClient (body: CreateClientInputDTO): Promise<CreateResDTO> {
-    const { code, password, hashed }: CreateNewUserDTO = await this.createNewUser()
+    const { code, password, hashed }: CreateNewUserDTO =
+      await this.createNewUser()
     const userId: string = await this.createUserRecord(code, hashed, 'client')
     await this.prisma.profile.create({
       data: {
@@ -60,15 +72,20 @@ class UserService {
     return { code, password }
   }
 
-  async createUserRecord (code: string, password: string, role: string): Promise<string> {
-    const user = await this.prisma.user.create({
-      data: {
-        code,
-        password,
-        role
-      }
-    })
-      .catch(err => {
+  async createUserRecord (
+    code: string,
+    password: string,
+    role: string
+  ): Promise<string> {
+    const user = await this.prisma.user
+      .create({
+        data: {
+          code,
+          password,
+          role
+        }
+      })
+      .catch((err) => {
         throw boomify(err)
       })
       .finally(async () => {
@@ -101,16 +118,23 @@ class UserService {
     })
   }
 
-  async findByCode (code: string): Promise<FindUserDTO> {
-    return await this.prisma.user.findFirst({
-      where: { code },
-      select: {
-        id: true,
-        password: true,
-        role: true
-      }
+  async findClientProfile (clientId: string): Promise<FindClientProfileDTO> {
+    return await this.prisma.profile.findFirst({
+      where: { user_id: clientId }
     })
-      .catch(err => {
+  }
+
+  async findByCode (code: string): Promise<FindUserDTO> {
+    return await this.prisma.user
+      .findFirst({
+        where: { code },
+        select: {
+          id: true,
+          password: true,
+          role: true
+        }
+      })
+      .catch((err) => {
         throw boomify(err)
       })
       .finally(async () => {
@@ -119,13 +143,14 @@ class UserService {
   }
 
   async verifyAdmin (): Promise<boolean> {
-    return !!await this.prisma.user.findFirst({ where: { role: 'admin' } })
-      .catch(err => {
+    return !!(await this.prisma.user
+      .findFirst({ where: { role: 'admin' } })
+      .catch((err) => {
         throw boomify(err)
       })
       .finally(async () => {
         await this.prisma.$disconnect()
-      })
+      }))
   }
 
   generateCypher (len: number): string {

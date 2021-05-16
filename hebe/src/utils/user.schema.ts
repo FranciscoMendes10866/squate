@@ -35,3 +35,11 @@ export const signInSchema = {
     }
   }
 }
+
+export const FindProfileSchema = {
+  schema: {
+    params: {
+      clientId: { type: 'string' }
+    }
+  }
+}
