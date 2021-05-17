@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 import { boomify } from '@hapi/boom'
 
-import { BodyDTO, FindAllDTO } from '@utils/measurements.dto'
+import { BodyDTO, FindDTO } from '@utils/measurements.dto'
 
 const prisma = new PrismaClient()
 
@@ -41,7 +41,7 @@ class UserService {
       })
   }
 
-  async findAll (clientId: string): Promise<FindAllDTO[]> {
+  async findAll (clientId: string): Promise<FindDTO[]> {
     return await this.prisma.measurement.findMany({
       where: { user_id: clientId },
       select: {
@@ -64,6 +64,27 @@ class UserService {
 
   async destroy (id: string): Promise<void> {
     await this.prisma.measurement.delete({ where: { id } })
+      .catch(err => {
+        throw boomify(err)
+      })
+      .finally(async () => {
+        await this.prisma.$disconnect()
+      })
+  }
+
+  async findOne (id: string): Promise<FindDTO> {
+    return await this.prisma.measurement.findFirst({
+      where: { id },
+      select: {
+        id: true,
+        peitoral: true,
+        quadril: true,
+        cintura: true,
+        coxa: true,
+        braco: true,
+        bracoContraido: true
+      }
+    })
       .catch(err => {
         throw boomify(err)
       })

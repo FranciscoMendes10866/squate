@@ -7,7 +7,7 @@ export interface BodyDTO {
   bracoContraido: number;
 }
 
-export interface FindAllDTO {
+export interface FindDTO {
   id: string;
   peitoral: number;
   quadril: number;

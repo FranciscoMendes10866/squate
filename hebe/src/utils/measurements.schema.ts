@@ -46,10 +46,18 @@ export const DestroySchema = {
   }
 }
 
-export const FindSchema = {
+export const FindAllSchema = {
   schema: {
     params: {
       clientId: { type: 'string' }
+    }
+  }
+}
+
+export const FindOneSchema = {
+  schema: {
+    params: {
+      id: { type: 'string' }
     }
   }
 }
