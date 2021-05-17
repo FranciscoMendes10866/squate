@@ -6,7 +6,7 @@ import { TanitaService } from '@services/index'
 import { TanitaStoreResDTO } from '@utils/tanita.dto'
 
 const TanitaController = async (app, opts) => {
-  app.post('/api/tanita/:clientId', createTanitaSchema, async (request: FastifyRequest, reply: FastifyReply): Promise<TanitaStoreResDTO> => {
+  app.post('/api/tanita/:clientId', { preValidation: [app.authGuard], schema: createTanitaSchema }, async (request: FastifyRequest, reply: FastifyReply): Promise<TanitaStoreResDTO> => {
     const init = metricsInit()
 
     const { clientId }: any = request.params
@@ -17,7 +17,7 @@ const TanitaController = async (app, opts) => {
     return reply.send({ ...result })
   })
 
-  app.get('/api/tanita/:clientId', FindAllSchema, async (request: FastifyRequest, reply: FastifyReply): Promise<TanitaStoreResDTO[]> => {
+  app.get('/api/tanita/:clientId', { preValidation: [app.authGuard], schema: FindAllSchema }, async (request: FastifyRequest, reply: FastifyReply): Promise<TanitaStoreResDTO[]> => {
     const init = metricsInit()
 
     const { clientId }: any = request.params
@@ -27,7 +27,7 @@ const TanitaController = async (app, opts) => {
     return reply.send(result)
   })
 
-  app.patch('/api/tanita/:id', patchTanitaSchema, async (request: FastifyRequest, reply: FastifyReply): Promise<null> => {
+  app.patch('/api/tanita/:id', { preValidation: [app.authGuard], schema: patchTanitaSchema }, async (request: FastifyRequest, reply: FastifyReply): Promise<null> => {
     const init = metricsInit()
 
     const body: any = request.body
@@ -38,7 +38,7 @@ const TanitaController = async (app, opts) => {
     return reply.send(null)
   })
 
-  app.delete('/api/tanita/:id', IdParamsSchema, async (request: FastifyRequest, reply: FastifyReply): Promise<null> => {
+  app.delete('/api/tanita/:id', { preValidation: [app.authGuard], schema: IdParamsSchema }, async (request: FastifyRequest, reply: FastifyReply): Promise<null> => {
     const init = metricsInit()
 
     const { id }: any = request.params
@@ -48,7 +48,7 @@ const TanitaController = async (app, opts) => {
     return reply.send(null)
   })
 
-  app.get('/api/tanita/detail/:id', IdParamsSchema, async (request: FastifyRequest, reply: FastifyReply): Promise<TanitaStoreResDTO> => {
+  app.get('/api/tanita/detail/:id', { preValidation: [app.authGuard], schema: IdParamsSchema }, async (request: FastifyRequest, reply: FastifyReply): Promise<TanitaStoreResDTO> => {
     const init = metricsInit()
 
     const { id }: any = request.params

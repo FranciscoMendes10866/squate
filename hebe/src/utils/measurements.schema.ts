@@ -1,63 +1,53 @@
 export const StoreSchema = {
-  schema: {
-    body: {
-      type: 'object',
-      required: ['peitoral', 'quadril', 'cintura', 'coxa', 'braco', 'bracoContraido'],
-      properties: {
-        peitoral: { type: 'number' },
-        quadril: { type: 'number' },
-        cintura: { type: 'number' },
-        coxa: { type: 'number' },
-        braco: { type: 'number' },
-        bracoContraido: { type: 'number' }
-      }
-    },
-    params: {
-      clientId: { type: 'string' }
+  body: {
+    type: 'object',
+    required: ['peitoral', 'quadril', 'cintura', 'coxa', 'braco', 'bracoContraido'],
+    properties: {
+      peitoral: { type: 'number' },
+      quadril: { type: 'number' },
+      cintura: { type: 'number' },
+      coxa: { type: 'number' },
+      braco: { type: 'number' },
+      bracoContraido: { type: 'number' }
     }
+  },
+  params: {
+    clientId: { type: 'string' }
   }
 }
 
 export const patchSchema = {
-  schema: {
-    body: {
-      type: 'object',
-      required: ['peitoral', 'quadril', 'cintura', 'coxa', 'braco', 'bracoContraido'],
-      properties: {
-        peitoral: { type: 'number' },
-        quadril: { type: 'number' },
-        cintura: { type: 'number' },
-        coxa: { type: 'number' },
-        braco: { type: 'number' },
-        bracoContraido: { type: 'number' }
-      }
-    },
-    params: {
-      id: { type: 'string' }
+  body: {
+    type: 'object',
+    required: ['peitoral', 'quadril', 'cintura', 'coxa', 'braco', 'bracoContraido'],
+    properties: {
+      peitoral: { type: 'number' },
+      quadril: { type: 'number' },
+      cintura: { type: 'number' },
+      coxa: { type: 'number' },
+      braco: { type: 'number' },
+      bracoContraido: { type: 'number' }
     }
+  },
+  params: {
+    id: { type: 'string' }
   }
 }
 
 export const DestroySchema = {
-  schema: {
-    params: {
-      id: { type: 'string' }
-    }
+  params: {
+    id: { type: 'string' }
   }
 }
 
 export const FindAllSchema = {
-  schema: {
-    params: {
-      clientId: { type: 'string' }
-    }
+  params: {
+    clientId: { type: 'string' }
   }
 }
 
 export const FindOneSchema = {
-  schema: {
-    params: {
-      id: { type: 'string' }
-    }
+  params: {
+    id: { type: 'string' }
   }
 }

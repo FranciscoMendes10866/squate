@@ -6,7 +6,7 @@ import { DestroySchema, StoreSchema, patchSchema, FindAllSchema, FindOneSchema }
 import { BodyDTO, FindDTO } from '@utils/measurements.dto'
 
 const MeasurementsController = async (app, opts) => {
-  app.post('/api/measurement/:clientId', StoreSchema, async (request: FastifyRequest, reply: FastifyReply): Promise<BodyDTO> => {
+  app.post('/api/measurement/:clientId', { preValidation: [app.authGuard], schema: StoreSchema }, async (request: FastifyRequest, reply: FastifyReply): Promise<BodyDTO> => {
     const init = metricsInit()
 
     const body: any = request.body
@@ -17,7 +17,7 @@ const MeasurementsController = async (app, opts) => {
     return reply.send({ ...result })
   })
 
-  app.patch('/api/measurement/:id', patchSchema, async (request: FastifyRequest, reply: FastifyReply): Promise<null> => {
+  app.patch('/api/measurement/:id', { preValidation: [app.authGuard], schema: patchSchema }, async (request: FastifyRequest, reply: FastifyReply): Promise<null> => {
     const init = metricsInit()
 
     const body: any = request.body
@@ -28,7 +28,7 @@ const MeasurementsController = async (app, opts) => {
     return reply.send(null)
   })
 
-  app.get('/api/measurement/:clientId', FindAllSchema, async (request: FastifyRequest, reply: FastifyReply): Promise<FindDTO[]> => {
+  app.get('/api/measurement/:clientId', { preValidation: [app.authGuard], schema: FindAllSchema }, async (request: FastifyRequest, reply: FastifyReply): Promise<FindDTO[]> => {
     const init = metricsInit()
 
     const { clientId }: any = request.params
@@ -38,7 +38,7 @@ const MeasurementsController = async (app, opts) => {
     return reply.send(result)
   })
 
-  app.delete('/api/measurement/:id', DestroySchema, async (request: FastifyRequest, reply: FastifyReply): Promise<null> => {
+  app.delete('/api/measurement/:id', { preValidation: [app.authGuard], schema: DestroySchema }, async (request: FastifyRequest, reply: FastifyReply): Promise<null> => {
     const init = metricsInit()
 
     const { id }: any = request.params
@@ -48,7 +48,7 @@ const MeasurementsController = async (app, opts) => {
     return reply.send(null)
   })
 
-  app.get('/api/measurement/detail/:id', FindOneSchema, async (request: FastifyRequest, reply: FastifyReply): Promise<FindDTO> => {
+  app.get('/api/measurement/detail/:id', { preValidation: [app.authGuard], schema: FindOneSchema }, async (request: FastifyRequest, reply: FastifyReply): Promise<FindDTO> => {
     const init = metricsInit()
 
     const { id }: any = request.params
