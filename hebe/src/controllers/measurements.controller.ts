@@ -6,25 +6,33 @@ import { DestroySchema, StoreSchema, patchSchema, FindAllSchema, FindOneSchema }
 import { BodyDTO, FindDTO } from '@utils/measurements.dto'
 
 const MeasurementsController = async (app, opts) => {
-  app.post('/api/measurement/:clientId', { preValidation: [app.authGuard], schema: StoreSchema }, async (request: FastifyRequest, reply: FastifyReply): Promise<BodyDTO> => {
-    const init = metricsInit()
+  app.post('/api/measurement/:clientId', { preValidation: [app.authGuard], schema: StoreSchema }, async (request: FastifyRequest, reply: FastifyReply): Promise<BodyDTO | null> => {
+    const { role }: any = request.user
+    if (role === 'admin') {
+      const init = metricsInit()
 
-    const body: any = request.body
-    const { clientId }: any = request.params
-    const result: BodyDTO = await MeasurementsService.store(body, clientId)
+      const body: any = request.body
+      const { clientId }: any = request.params
+      const result: BodyDTO = await MeasurementsService.store(body, clientId)
 
-    metricsEnd(init)
-    return reply.send({ ...result })
+      metricsEnd(init)
+      return reply.send({ ...result })
+    }
+    return reply.send(null)
   })
 
   app.patch('/api/measurement/:id', { preValidation: [app.authGuard], schema: patchSchema }, async (request: FastifyRequest, reply: FastifyReply): Promise<null> => {
-    const init = metricsInit()
+    const { role }: any = request.user
+    if (role === 'admin') {
+      const init = metricsInit()
 
-    const body: any = request.body
-    const { id }: any = request.params
-    await MeasurementsService.patch(body, id)
+      const body: any = request.body
+      const { id }: any = request.params
+      await MeasurementsService.patch(body, id)
 
-    metricsEnd(init)
+      metricsEnd(init)
+      return reply.send(null)
+    }
     return reply.send(null)
   })
 
@@ -39,23 +47,31 @@ const MeasurementsController = async (app, opts) => {
   })
 
   app.delete('/api/measurement/:id', { preValidation: [app.authGuard], schema: DestroySchema }, async (request: FastifyRequest, reply: FastifyReply): Promise<null> => {
-    const init = metricsInit()
+    const { role }: any = request.user
+    if (role === 'admin') {
+      const init = metricsInit()
 
-    const { id }: any = request.params
-    await MeasurementsService.destroy(id)
+      const { id }: any = request.params
+      await MeasurementsService.destroy(id)
 
-    metricsEnd(init)
+      metricsEnd(init)
+      return reply.send(null)
+    }
     return reply.send(null)
   })
 
-  app.get('/api/measurement/detail/:id', { preValidation: [app.authGuard], schema: FindOneSchema }, async (request: FastifyRequest, reply: FastifyReply): Promise<FindDTO> => {
-    const init = metricsInit()
+  app.get('/api/measurement/detail/:id', { preValidation: [app.authGuard], schema: FindOneSchema }, async (request: FastifyRequest, reply: FastifyReply): Promise<FindDTO | null> => {
+    const { role }: any = request.user
+    if (role === 'admin') {
+      const init = metricsInit()
 
-    const { id }: any = request.params
-    const result: FindDTO = await MeasurementsService.findOne(id)
+      const { id }: any = request.params
+      const result: FindDTO = await MeasurementsService.findOne(id)
 
-    metricsEnd(init)
-    return reply.send(result)
+      metricsEnd(init)
+      return reply.send(result)
+    }
+    return reply.send(null)
   })
 }
 

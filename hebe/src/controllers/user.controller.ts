@@ -20,14 +20,18 @@ const UserController = async (app, opts) => {
     return reply.send({ ...result })
   })
 
-  app.post('/api/create-client', createClientSchema, async (request: FastifyRequest, reply: FastifyReply): Promise<CreateResDTO> => {
-    const init = metricsInit()
+  app.post('/api/create-client', createClientSchema, async (request: FastifyRequest, reply: FastifyReply): Promise<CreateResDTO | null> => {
+    const { role }: any = request.user
+    if (role === 'admin') {
+      const init = metricsInit()
 
-    const body: any = request.body
-    const result: CreateResDTO = await UserService.createClient(body)
+      const body: any = request.body
+      const result: CreateResDTO = await UserService.createClient(body)
 
-    metricsEnd(init)
-    return reply.send({ ...result })
+      metricsEnd(init)
+      return reply.send({ ...result })
+    }
+    return reply.send(null)
   })
 
   app.post('/api/sign-in', signInSchema, async (request: FastifyRequest, reply: FastifyReply): Promise<SignInResDTO | null> => {
@@ -46,13 +50,17 @@ const UserController = async (app, opts) => {
     return reply.send({ user: { token, role: result.role } })
   })
 
-  app.get('/api/clients', { preValidation: [app.authGuard] }, async (request: FastifyRequest, reply: FastifyReply): Promise<FindClientsDTO[]> => {
-    const init = metricsInit()
+  app.get('/api/clients', { preValidation: [app.authGuard] }, async (request: FastifyRequest, reply: FastifyReply): Promise<FindClientsDTO[] | null> => {
+    const { role }: any = request.user
+    if (role === 'admin') {
+      const init = metricsInit()
 
-    const results: FindClientsDTO[] = await UserService.findClients()
+      const results: FindClientsDTO[] = await UserService.findClients()
 
-    metricsEnd(init)
-    return reply.send(results)
+      metricsEnd(init)
+      return reply.send(results)
+    }
+    return reply.send(null)
   })
 
   app.get('/api/profile/:clientId', { preValidation: [app.authGuard], schema: FindProfileSchema }, async (request: FastifyRequest, reply: FastifyReply): Promise<FindClientProfileDTO> => {
