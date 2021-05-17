@@ -46,7 +46,7 @@ const UserController = async (app, opts) => {
     return reply.send({ user: { token, role: result.role } })
   })
 
-  app.get('/api/clients', async (request: FastifyRequest, reply: FastifyReply): Promise<FindClientsDTO[]> => {
+  app.get('/api/clients', { preValidation: [app.authGuard] }, async (request: FastifyRequest, reply: FastifyReply): Promise<FindClientsDTO[]> => {
     const init = metricsInit()
 
     const results: FindClientsDTO[] = await UserService.findClients()
@@ -55,7 +55,7 @@ const UserController = async (app, opts) => {
     return reply.send(results)
   })
 
-  app.get('/api/profile/:clientId', FindProfileSchema, async (request: FastifyRequest, reply: FastifyReply): Promise<FindClientProfileDTO> => {
+  app.get('/api/profile/:clientId', { preValidation: [app.authGuard], schema: FindProfileSchema }, async (request: FastifyRequest, reply: FastifyReply): Promise<FindClientProfileDTO> => {
     const init = metricsInit()
 
     const { clientId }: any = request.params
